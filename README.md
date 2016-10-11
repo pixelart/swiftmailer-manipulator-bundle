@@ -14,8 +14,7 @@ you to modify every the subject or body of the mail before delivery.
 Installation
 ------------
 
-Step 1: Download the Bundle
----------------------------
+### Step 1: Download the Bundle
 
 Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
@@ -28,8 +27,7 @@ This command requires you to have Composer installed globally, as explained
 in the [installation chapter][composer global install] of the Composer
 documentation.
 
-Step 2: Enable the Bundle
--------------------------
+### Step 2: Enable the Bundle
 
 Then, enable the bundle by adding it to the list of registered bundles
 in the `app/AppKernel.php` file of your project:
@@ -55,6 +53,41 @@ class AppKernel extends Kernel
     // ...
 }
 ```
+
+### Step 3: Configure the Bundle
+
+Now, configure your wanted manipulations. You have the option to prepend
+the subject with an string or to prepend the body with the content of a
+template.
+
+If you are using the default swiftmailer configuration, the config is:
+
+```yaml
+# app/config_stage.yml
+
+pixelart_swiftmailer_manipulator:
+    prepend_subject: '[TESTSYSTEM!]'
+    prepend_body: 'swiftmailer/prepend_body.txt.twig'
+```
+
+The bundle supports multiple swiftmailer mailers too. You only need to add
+the mailers you want to manipulate. For example if you have three configured
+mailers, `first_mailer`, `secondary_mailer` and `third_mailer`, but you don't
+want to prepend `third_mailer`:
+
+```yaml
+# app/config_stage.yml
+
+pixelart_swiftmailer_manipulator:
+    mailers:
+        first_mailer:
+            prepend_subject: '[TESTSYSTEM 1!]'
+            prepend_body: 'swiftmailer/prepend_body_1.txt.twig':
+        secondary_mailer:
+            prepend_subject: '[TESTSYSTEM 2!]'
+            prepend_body: 'swiftmailer/prepend_body_2.txt.twig'
+```
+
 
 [MailHog]: https://github.com/mailhog/MailHog
 [composer global install]: https://getcomposer.org/doc/00-intro.md
