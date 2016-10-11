@@ -1,6 +1,8 @@
 Swiftmailer Manipulator for Symfony
 ===================================
 
+[![Build Status](https://travis-ci.org/pixelart/swiftmailer-manipulator-bundle.svg?branch=master)](https://travis-ci.org/pixelart/swiftmailer-manipulator-bundle)
+
 Sometimes you have staging systems, where you can't install [MailHog] and
 using `delivery_address` or `disable_delivery` on the SwiftmailerBundle is
 not enough. For example your customer wants the mail to be really delivered.
