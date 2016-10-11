@@ -18,10 +18,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
     use ConfigurationTestCaseTrait;
 
-    /**
-     * @test
-     */
-    public function empty_configuration_is_empty()
+    public function testEmptyConfigurationIsEmpty()
     {
         $this->assertProcessedConfigurationEquals([
             [],
@@ -30,10 +27,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
-    public function full_configuration_is_processed()
+    public function testFullConfigurationIsProcessed()
     {
         $this->assertProcessedConfigurationEquals([
             [
@@ -50,10 +44,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
-    public function one_mailer_is_processed()
+    public function testOneMailerIsProcessed()
     {
         $this->assertProcessedConfigurationEquals([
             [
@@ -74,10 +65,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
-    public function many_mailers_are_processed()
+    public function testManyMailersAreProcessed()
     {
         $this->assertProcessedConfigurationEquals([
             [
