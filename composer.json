@@ -18,6 +18,9 @@
         "symfony/framework-bundle": "^2.7 || ^3.0",
         "symfony/swiftmailer-bundle": "^2.3"
     },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^1.12"
+    },
     "autoload": {
         "psr-4": {
             "Pixelart\\Bundle\\SwiftmailerManipulatorBundle\\": ""
