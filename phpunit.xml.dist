@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ This file is part of the PixelartSwiftmailerManipulatorBundle.
+  ~ This file is part of the pixelart Swiftmailer manipulator bundle.
   ~
   ~ (c) pixelart GmbH
   ~
@@ -20,7 +20,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="PixelartSwiftmailerManipulatorBundle Test Suite">
+        <testsuite name="pixelart Swiftmailer manipulator bundle test suite">
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>

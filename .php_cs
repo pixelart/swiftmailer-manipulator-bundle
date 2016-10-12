@@ -1,6 +1,7 @@
 <?php
-/**
- * This file is part of the PixelartSwiftmailerManipulatorBundle.
+
+/*
+ * This file is part of the pixelart Swiftmailer manipulator bundle.
  *
  * (c) pixelart GmbH
  *
