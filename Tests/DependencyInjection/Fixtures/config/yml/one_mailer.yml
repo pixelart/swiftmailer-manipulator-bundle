@@ -1,0 +1,5 @@
+pixelart_swiftmailer_manipulator:
+    mailers:
+        main_mailer:
+            prepend_subject: '[TESTSYSTEM!]'
+            prepend_body: 'swiftmailer/prepend_body.txt.twig'
