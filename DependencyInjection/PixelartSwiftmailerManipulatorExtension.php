@@ -34,17 +34,14 @@ class PixelartSwiftmailerManipulatorExtension extends Extension
 
     private function configureMailer($name, array $mailer, ContainerBuilder $container)
     {
-        if (
-            (isset($mailer['prepend_subject']) && $mailer['prepend_subject'])
-            || (isset($mailer['prepend_body']) && $mailer['prepend_body'])
-        ) {
+        if (!empty($mailer['prepend_subject']) || !empty($mailer['prepend_body'])) {
             $container->setParameter(
                 sprintf('pixelart_swiftmailer_manipulator.mailer.%s.prepend_subject', $name),
-                $mailer['prepend_subject']
+                !empty($mailer['prepend_subject']) ? $mailer['prepend_subject'] : null
             );
             $container->setParameter(
                 sprintf('pixelart_swiftmailer_manipulator.mailer.%s.prepend_body', $name),
-                $mailer['prepend_body']
+                !empty($mailer['prepend_body']) ? $mailer['prepend_body'] : null
             );
 
             $definitionDecorator = new DefinitionDecorator('pixelart_swiftmailer_manipulator.plugin.abstract');

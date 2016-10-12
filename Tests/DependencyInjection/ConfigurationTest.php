@@ -44,6 +44,21 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    public function testSubjectOnlyIsProcessed()
+    {
+        $this->assertProcessedConfigurationEquals([
+            [
+                'prepend_subject' => '[TESTSYSTEM!]',
+            ],
+        ], [
+            'mailers' => [
+                'default' => [
+                    'prepend_subject' => '[TESTSYSTEM!]',
+                ],
+            ],
+        ]);
+    }
+
     public function testOneMailerIsProcessed()
     {
         $this->assertProcessedConfigurationEquals([

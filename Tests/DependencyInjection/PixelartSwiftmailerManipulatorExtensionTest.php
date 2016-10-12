@@ -64,6 +64,26 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
     /**
      * @dataProvider getConfigTypes
      */
+    public function testSubjectOnly($type)
+    {
+        $container = $this->loadContainerFromFile('subject_only', $type);
+
+        self::assertSame(
+            ['swiftmailer.default.plugin' => [[]]],
+            $container->getDefinition('pixelart_swiftmailer_manipulator.mailer.default.plugin')->getTags()
+        );
+
+        self::assertSame(
+            '[TESTSYSTEM!]',
+            $container->getParameter('pixelart_swiftmailer_manipulator.mailer.default.prepend_subject')
+        );
+
+        self::assertNull($container->getParameter('pixelart_swiftmailer_manipulator.mailer.default.prepend_body'));
+    }
+
+    /**
+     * @dataProvider getConfigTypes
+     */
     public function testOneMailer($type)
     {
         $container = $this->loadContainerFromFile('one_mailer', $type);
