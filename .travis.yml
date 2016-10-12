@@ -33,3 +33,10 @@ script: phpunit --coverage-clover=coverage.clover
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+notifications:
+  slack:
+    rooms:
+      secure: soAF/na+nm5E3ZIoPGCRL+6cUGCVMaf64ln1oI7aVxhGVnC8n48T47LF43cPCCLF/6s1aM/W/7l62eymLhXgxHmpk7XiJbYrk/akr3+Tj6x2g7NlnmEjwt+0OH21BcV+IjPAggzSyjZSjsiqe06yMLQ7bT51ONxijoXdigJZwZtgSpTjhOnlv1UTLgmh9qNnAKnZZFlpk50s5k4HFy4QvOTLm+Y1oiBI8dygLF9xB8A3PYKXbEfDEbAuucOrWX947QAU6MaNWGzAFNIpDs2ET41XM3DNK4FG/gkFQH1XoNYcvOF49rne3NUa5U1X01hqfiOrb1RKBc9HnKyUZcLdyWqOGOVmIkXOQgR/Nv+FuBMZDGrviLpoYINOsjchyzzHzFtuCkS4dvYrcaI9Y1wVaSiwPaVw5yZKD5ByHFbroSbDPD5UBjvZGN+NjYtZDA17FcPGmth34ERXBcnmz86mG1jBUl46av0GlB3m9siY1/TozEsoqvZl2yYFTFcYmZodLsy2gnkIwiGOwMtoypEyz0x5U14BdbYHcTiX9UzqR81yXd538rOqjFhMO/qq1JGUITOVNxIqchdIf3r8DJtKxzSaJzVh2g3dop5pMAyeGxau7RpOzr+Sd6r1Eh0NtlBT2d56LHAP7nfO1jGy4W4UyreI9Ssy6NyPJ16BKkrHWx0=
+    on_success: change
+    on_failure: always
