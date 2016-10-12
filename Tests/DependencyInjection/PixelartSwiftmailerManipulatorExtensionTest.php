@@ -141,8 +141,8 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
     }
 
     /**
-     * @param  string $file
-     * @param  string $type
+     * @param string $file
+     * @param string $type
      *
      * @return ContainerBuilder
      */
