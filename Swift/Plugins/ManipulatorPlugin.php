@@ -66,25 +66,8 @@ final class ManipulatorPlugin implements \Swift_Events_SendListener
         $message = $event->getMessage();
         $this->restoreMessage($message);
 
-        if (null !== $this->prependSubject) {
-            $this->originalSubject = $message->getSubject();
-
-            $message->setSubject(sprintf(
-                '%s %s',
-                $this->prependSubject,
-                $this->originalSubject
-            ));
-        }
-
-        if (null !== $this->prependBodyTemplate) {
-            $this->originalBody = $message->getBody();
-
-            $message->setBody(sprintf(
-                "%s\n\n---------------------------------------------------------------------------\n\n%s",
-                $this->templating->render($this->prependBodyTemplate),
-                $this->originalBody
-            ));
-        }
+        $this->prependSubject($message);
+        $this->prependBodyWithTemplate($message);
 
         $this->lastMessage = $message;
     }
@@ -95,6 +78,38 @@ final class ManipulatorPlugin implements \Swift_Events_SendListener
     public function sendPerformed(Swift_Events_SendEvent $event)
     {
         $this->restoreMessage($event->getMessage());
+    }
+
+    /**
+     * @param \Swift_Mime_Message $message
+     */
+    private function prependSubject(\Swift_Mime_Message $message)
+    {
+        if (null !== $this->prependSubject) {
+            $this->originalSubject = $message->getSubject();
+
+            $message->setSubject(sprintf(
+                '%s %s',
+                $this->prependSubject,
+                $this->originalSubject
+            ));
+        }
+    }
+
+    /**
+     * @param \Swift_Mime_Message $message
+     */
+    private function prependBodyWithTemplate(\Swift_Mime_Message $message)
+    {
+        if (null !== $this->prependBodyTemplate) {
+            $this->originalBody = $message->getBody();
+
+            $message->setBody(sprintf(
+                "%s\n\n---------------------------------------------------------------------------\n\n%s",
+                $this->templating->render($this->prependBodyTemplate),
+                $this->originalBody
+            ));
+        }
     }
 
     /**
