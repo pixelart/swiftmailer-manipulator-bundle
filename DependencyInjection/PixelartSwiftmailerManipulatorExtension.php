@@ -32,7 +32,22 @@ class PixelartSwiftmailerManipulatorExtension extends Extension
         }
     }
 
+    /**
+     * @param string           $name      The mailer name
+     * @param array            $mailer    The mailer configuration
+     * @param ContainerBuilder $container The container builder
+     */
     private function configureMailer($name, array $mailer, ContainerBuilder $container)
+    {
+        $this->configureMailerManipulator($name, $mailer, $container);
+    }
+
+    /**
+     * @param string           $name      The mailer name
+     * @param array            $mailer    The mailer configuration
+     * @param ContainerBuilder $container The container builder
+     */
+    private function configureMailerManipulator($name, array $mailer, ContainerBuilder $container)
     {
         if (!empty($mailer['prepend_subject']) || !empty($mailer['prepend_body'])) {
             $container->setParameter(
