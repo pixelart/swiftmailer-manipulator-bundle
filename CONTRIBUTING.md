@@ -9,6 +9,7 @@ propose changes to this document in a pull request.
 #### Table Of Contents
 
 [What should I know before I get started?](#what-should-i-know-before-i-get-started)
+  * [Project Board](#project-board)
   * [License](#license)
 
 [How Can I Contribute?](#how-can-i-contribute)
@@ -27,9 +28,16 @@ propose changes to this document in a pull request.
 
 ## What should I know before I get started?
 
+### Project Board
+
+Although we use [GitHub issues](https://github.com/pixelart/swiftmailer-manipulator-bundle/issues)
+to track our issues we are using a [waffle.io board](https://waffle.io/pixelart/swiftmailer-manipulator-bundle)
+to have a visual overview over all issues and pull request. And it helps us to
+automate some state changes. Feel free to look into the board to get a feeling.
+
 ### License
 
-This projects adheres to the [MIT license](LICENSE)
+This projects adheres to the [MIT license](LICENSE).
 By participating, you are expected to license your contributions within the
 same license and you are allowed to make your contributions under this license.
 
@@ -42,7 +50,7 @@ guidelines helps maintainers and the community understand your report
 :pencil:, reproduce the behavior :computer: :computer:, and find related
 reports :mag_right:.
 
-Before creating bug reports, please check [do a search](https://github.com/pixelart/swiftmailer-manipulator-bundle/issues?q=is%3Aissue)
+Before creating bug reports, please [do a search](https://github.com/pixelart/swiftmailer-manipulator-bundle/issues?q=is%3Aissue)
 as you might find out that you don't need to create one. When you are creating
 a bug report, please include as many details as possible and please fill out
 the represented template to you accordingly.
@@ -55,7 +63,7 @@ Include details about your configuration and environment:
 * **Which Swiftmailer version are you using?** (`swiftmailer/swiftmailer`)
 
 You can get the exact versions by running `composer show` in your terminal
-and looking for the packages mentioned withing parenthesis above.
+and looking for the packages mentioned within the parenthesis above.
 
 ### Suggesting Enhancements
 
@@ -105,9 +113,6 @@ number of comments is a reasonable proxy for impact a given change will have.
     * :racehorse: `:racehorse:` when improving performance
     * :non-potable_water: `:non-potable_water:` when plugging memory leaks
     * :memo: `:memo:` when writing docs
-    * :penguin: `:penguin:` when fixing something on Linux
-    * :apple: `:apple:` when fixing something on macOS
-    * :checkered_flag: `:checkered_flag:` when fixing something on Windows
     * :bug: `:bug:` when fixing a bug
     * :fire: `:fire:` when removing code or files
     * :green_heart: `:green_heart:` when fixing the CI build
@@ -115,7 +120,7 @@ number of comments is a reasonable proxy for impact a given change will have.
     * :lock: `:lock:` when dealing with security
     * :arrow_up: `:arrow_up:` when upgrading dependencies
     * :arrow_down: `:arrow_down:` when downgrading dependencies
-    * :shirt: `:shirt:` when removing linter warnings
+    * :shirt: `:shirt:` when removing cs fixer errors
 
 ### Coding Styleguide
 
@@ -151,7 +156,7 @@ some labels are missing, then please open an issue too.
 
 #### Type of Issue and Issue State
 
-| Label name | Search :mag_right: | Description |
+| Label name | :mag_right: | Description |
 | --- | --- | --- |
 | `feature` | [search][search-label-feature] | Feature requests. |
 | `enhancement` | [search][search-label-enhancement] | Improvement requests. |
@@ -172,7 +177,7 @@ some labels are missing, then please open an issue too.
 
 #### Topic Categories
 
-| Label name | Search :mag_right: | Description |
+| Label name | :mag_right: | Description |
 | --- | --- | --- |
 | `docs` | [search][search-label-docs] | Related to any type of documentation. |
 | `plugin: manipulator` | [search][search-label-plugin-manipulator] | Related to the manipulator plugin. |
@@ -180,9 +185,10 @@ some labels are missing, then please open an issue too.
 
 #### Pull Request Labels
 
-| Label name | Search :mag_right: | Description
+| Label name | :mag_right: | Description
 | --- | --- | --- |
 | `in-progress` | [search][search-label-pr-in-progress] | Pull requests which are still being worked on, more changes will follow. |
+| `in-review` | [search][search-label-pr-in-review] | Pull requests which need or are under code review, and approval from maintainers. |
 
 [search-label-feature]: https://github.com/pixelart/swiftmailer-manipulator-bundle/issues?q=is%3Aopen+is%3Aissue+label%3Afeature
 [search-label-enhancement]: https://github.com/pixelart/swiftmailer-manipulator-bundle/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement
@@ -204,3 +210,4 @@ some labels are missing, then please open an issue too.
 [search-label-plugin-manipulator]: https://github.com/pixelart/swiftmailer-manipulator-bundle/issues?q=is%3Aopen+is%3Aissue+label%3A"plugin%3A+manipulator"
 [search-label-plugin-impersonate]: https://github.com/pixelart/swiftmailer-manipulator-bundle/issues?q=is%3Aopen+is%3Aissue+label%3A"plugin%3A+impersonate"
 [search-label-pr-in-progress]: https://github.com/pixelart/swiftmailer-manipulator-bundle/issues?q=is%3Aopen+is%3Aissue+label%3A"in+progress"
+[search-label-pr-in-review]: https://github.com/pixelart/swiftmailer-manipulator-bundle/issues?q=is%3Aopen+is%3Aissue+label%3A"in+review"
