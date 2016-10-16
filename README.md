@@ -93,6 +93,29 @@ pixelart_swiftmailer_manipulator:
             prepend_body: 'swiftmailer/prepend_body_2.txt.twig'
 ```
 
+Contributing
+------------
+
+The [contributing](CONTRIBUTING.md) guidelines contains all the information
+about contributing to the bundle.
+
+Bug tracking
+------------
+
+We use [GitHub issues](https://github.com/pixelart/swiftmailer-manipulator-bundle/issues)
+and [waffle.io board](https://waffle.io/pixelart/swiftmailer-manipulator-bundle)
+to track issues. If you have found bug, please create an issue.
+
+MIT License
+-----------
+
+License can be found [here](LICENSE).
+
+Code of Conduct
+---------------
+
+This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md).
+By participating, you are expected to uphold this code.
 
 [MailHog]: https://github.com/mailhog/MailHog
 [composer global install]: https://getcomposer.org/doc/00-intro.md
