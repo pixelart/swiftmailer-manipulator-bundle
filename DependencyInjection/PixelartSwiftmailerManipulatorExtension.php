@@ -36,26 +36,33 @@ class PixelartSwiftmailerManipulatorExtension extends Extension
     {
         if (!empty($mailer['prepend_subject']) || !empty($mailer['prepend_body'])) {
             $container->setParameter(
-                sprintf('pixelart_swiftmailer_manipulator.mailer.%s.prepend_subject', $name),
+                sprintf('pixelart_swiftmailer_manipulator.mailer.%s.manipulator.prepend_subject', $name),
                 !empty($mailer['prepend_subject']) ? $mailer['prepend_subject'] : null
             );
             $container->setParameter(
-                sprintf('pixelart_swiftmailer_manipulator.mailer.%s.prepend_body', $name),
+                sprintf('pixelart_swiftmailer_manipulator.mailer.%s.manipulator.prepend_body', $name),
                 !empty($mailer['prepend_body']) ? $mailer['prepend_body'] : null
             );
 
-            $definitionDecorator = new DefinitionDecorator('pixelart_swiftmailer_manipulator.plugin.abstract');
+            $definitionDecorator = new DefinitionDecorator(
+                'pixelart_swiftmailer_manipulator.plugin.manipulator.abstract'
+            );
+
             $container
                 ->setDefinition(
-                    sprintf('pixelart_swiftmailer_manipulator.mailer.%s.plugin', $name),
+                    sprintf('pixelart_swiftmailer_manipulator.mailer.%s.plugin.manipulator', $name),
                     $definitionDecorator
                 )
-                ->addArgument(sprintf('%%pixelart_swiftmailer_manipulator.mailer.%s.prepend_subject%%', $name))
-                ->addArgument(sprintf('%%pixelart_swiftmailer_manipulator.mailer.%s.prepend_body%%', $name))
+                ->addArgument(
+                    sprintf('%%pixelart_swiftmailer_manipulator.mailer.%s.manipulator.prepend_subject%%', $name)
+                )
+                ->addArgument(
+                    sprintf('%%pixelart_swiftmailer_manipulator.mailer.%s.manipulator.prepend_body%%', $name)
+                )
             ;
 
             $container
-                ->getDefinition(sprintf('pixelart_swiftmailer_manipulator.mailer.%s.plugin', $name))
+                ->getDefinition(sprintf('pixelart_swiftmailer_manipulator.mailer.%s.plugin.manipulator', $name))
                 ->addTag(sprintf('swiftmailer.%s.plugin', $name))
             ;
         }

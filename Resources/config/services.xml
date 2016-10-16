@@ -14,7 +14,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="pixelart_swiftmailer_manipulator.plugin.abstract"
+        <service id="pixelart_swiftmailer_manipulator.plugin.manipulator.abstract"
                 class="Pixelart\Bundle\SwiftmailerManipulatorBundle\Swift\Plugins\ManipulatorPlugin"
                 abstract="true" public="false">
             <argument type="service" id="templating" />
