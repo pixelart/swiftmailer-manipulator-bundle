@@ -6,6 +6,11 @@ cache:
   directories:
     - $HOME/.composer/cache
 
+branches:
+  only:
+    - master
+    - /^test\/.*$/
+
 matrix:
   include:
     - php: 5.4
