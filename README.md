@@ -93,6 +93,11 @@ pixelart_swiftmailer_manipulator:
             prepend_body: 'swiftmailer/prepend_body_2.txt.twig'
 ```
 
+Code of Conduct
+---------------
+
+This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md).
+By participating, you are expected to uphold this code.
 
 [MailHog]: https://github.com/mailhog/MailHog
 [composer global install]: https://getcomposer.org/doc/00-intro.md

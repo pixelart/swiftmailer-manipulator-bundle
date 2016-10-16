@@ -28,6 +28,12 @@ propose changes to this document in a pull request.
 
 ## What should I know before I get started?
 
+### Code of Conduct
+
+This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md).
+By participating, you are expected to uphold this code.
+Please report unacceptable behavior to [p.karisch@pixelart.at](mailto:p.karisch@pixelart.at).
+
 ### Project Board
 
 Although we use [GitHub issues](https://github.com/pixelart/swiftmailer-manipulator-bundle/issues)
