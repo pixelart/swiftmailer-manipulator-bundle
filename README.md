@@ -62,8 +62,8 @@ class AppKernel extends Kernel
 ### Step 3: Configure the Bundle
 
 Now, configure your wanted manipulations. You have the option to prepend
-the subject with an string or to prepend the body with the content of a
-template.
+the subject with an string, to prepend the body with the content of a
+template or change the message's sender address.
 
 If you are using the default swiftmailer configuration, the config is:
 
@@ -73,6 +73,7 @@ If you are using the default swiftmailer configuration, the config is:
 pixelart_swiftmailer_manipulator:
     prepend_subject: '[TESTSYSTEM!]'
     prepend_body: 'swiftmailer/prepend_body.txt.twig'
+    from_email: 'impersonated@example.com'
 ```
 
 The bundle supports multiple swiftmailer mailers too. You only need to add
