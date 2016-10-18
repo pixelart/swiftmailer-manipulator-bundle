@@ -21,7 +21,7 @@ class ImpersonatePluginTest extends \PHPUnit_Framework_TestCase
 {
     public function testImpersonatesSender()
     {
-        $message = $this->prophesize(\Swift_Mime_Message::class);
+        $message = $this->prophesize('\Swift_Mime_Message');
         $oldAddress = 'old@example.com';
         $newAddress = 'new@example.com';
 
@@ -37,7 +37,7 @@ class ImpersonatePluginTest extends \PHPUnit_Framework_TestCase
 
         $plugin = new ImpersonatePlugin($newAddress);
 
-        $event = $this->prophesize(\Swift_Events_SendEvent::class);
+        $event = $this->prophesize('\Swift_Events_SendEvent');
         $event->getMessage()->willReturn($message->reveal());
 
         $plugin->beforeSendPerformed($event->reveal());
