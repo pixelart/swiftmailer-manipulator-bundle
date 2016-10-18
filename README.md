@@ -73,7 +73,7 @@ If you are using the default swiftmailer configuration, the config is:
 pixelart_swiftmailer_manipulator:
     prepend_subject: '[TESTSYSTEM!]'
     prepend_body: 'swiftmailer/prepend_body.txt.twig'
-    from_email: 'impersonated@example.com'
+    from_address: 'impersonated@example.com'
 ```
 
 The bundle supports multiple swiftmailer mailers too. You only need to add
