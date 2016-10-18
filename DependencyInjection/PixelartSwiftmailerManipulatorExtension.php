@@ -40,7 +40,7 @@ class PixelartSwiftmailerManipulatorExtension extends Extension
     private function configureMailer($name, array $mailer, ContainerBuilder $container)
     {
         $this->configureMailerManipulator($name, $mailer, $container);
-        $this->configureMailerImpersonation($name, $mailer, $container);
+        $this->configureMailerFromAddress($name, $mailer, $container);
     }
 
     /**
@@ -89,7 +89,7 @@ class PixelartSwiftmailerManipulatorExtension extends Extension
      * @param array            $mailer    The mailer configuration
      * @param ContainerBuilder $container The container builder
      */
-    private function configureMailerImpersonation($name, array $mailer, ContainerBuilder $container)
+    private function configureMailerFromAddress($name, array $mailer, ContainerBuilder $container)
     {
         if (!empty($mailer['from_address'])) {
             $container->setParameter(
