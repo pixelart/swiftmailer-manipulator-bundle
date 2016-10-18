@@ -40,6 +40,7 @@ class PixelartSwiftmailerManipulatorExtension extends Extension
     private function configureMailer($name, array $mailer, ContainerBuilder $container)
     {
         $this->configureMailerManipulator($name, $mailer, $container);
+        $this->configureMailerImpersonation($name, $mailer, $container);
     }
 
     /**
@@ -78,6 +79,40 @@ class PixelartSwiftmailerManipulatorExtension extends Extension
 
             $container
                 ->getDefinition(sprintf('pixelart_swiftmailer_manipulator.mailer.%s.plugin.manipulator', $name))
+                ->addTag(sprintf('swiftmailer.%s.plugin', $name))
+            ;
+        }
+    }
+
+    /**
+     * @param string           $name      The mailer name
+     * @param array            $mailer    The mailer configuration
+     * @param ContainerBuilder $container The container builder
+     */
+    private function configureMailerImpersonation($name, array $mailer, ContainerBuilder $container)
+    {
+        if (!empty($mailer['from_address'])) {
+            $container->setParameter(
+                sprintf('pixelart_swiftmailer_manipulator.mailer.%s.impersonate.from_address', $name),
+                !empty($mailer['from_address']) ? $mailer['from_address'] : null
+            );
+
+            $definitionDecorator = new DefinitionDecorator(
+                'pixelart_swiftmailer_manipulator.plugin.impersonate.abstract'
+            );
+
+            $container
+                ->setDefinition(
+                    sprintf('pixelart_swiftmailer_manipulator.mailer.%s.plugin.impersonate', $name),
+                    $definitionDecorator
+                )
+                ->addArgument(
+                    sprintf('%%pixelart_swiftmailer_manipulator.mailer.%s.impersonate.from_address%%', $name)
+                )
+            ;
+
+            $container
+                ->getDefinition(sprintf('pixelart_swiftmailer_manipulator.mailer.%s.plugin.impersonate', $name))
                 ->addTag(sprintf('swiftmailer.%s.plugin', $name))
             ;
         }

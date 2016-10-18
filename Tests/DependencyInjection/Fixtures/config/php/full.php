@@ -12,4 +12,5 @@
 $container->loadFromExtension('pixelart_swiftmailer_manipulator', [
     'prepend_subject' => '[TESTSYSTEM!]',
     'prepend_body' => 'swiftmailer/prepend_body.txt.twig',
+    'from_address' => 'fake@example.com',
 ]);
