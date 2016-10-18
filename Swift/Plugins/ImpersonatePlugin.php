@@ -11,8 +11,6 @@
 
 namespace Pixelart\Bundle\SwiftmailerManipulatorBundle\Swift\Plugins;
 
-use Swift_Events_SendEvent;
-
 /**
  * Allows changing sender's address before sending the message.
  *
@@ -31,7 +29,7 @@ class ImpersonatePlugin implements \Swift_Events_SendListener
     private $originalAddresses = [];
 
     /**
-     * @param string $address Address the message should be sent from
+     * @param string $fromAddress Address the message should be sent from
      */
     public function __construct($fromAddress)
     {
@@ -39,9 +37,9 @@ class ImpersonatePlugin implements \Swift_Events_SendListener
     }
 
     /**
-     * @param Swift_Events_SendEvent $event
+     * @param \Swift_Events_SendEvent $event
      */
-    public function beforeSendPerformed(Swift_Events_SendEvent $event)
+    public function beforeSendPerformed(\Swift_Events_SendEvent $event)
     {
         $message = $event->getMessage();
 
@@ -51,9 +49,9 @@ class ImpersonatePlugin implements \Swift_Events_SendListener
     }
 
     /**
-     * @param Swift_Events_SendEvent $event
+     * @param \Swift_Events_SendEvent $event
      */
-    public function sendPerformed(Swift_Events_SendEvent $event)
+    public function sendPerformed(\Swift_Events_SendEvent $event)
     {
         $message = $event->getMessage();
         $message->setFrom($this->originalAddresses);
