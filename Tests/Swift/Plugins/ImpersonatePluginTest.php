@@ -26,8 +26,13 @@ class ImpersonatePluginTest extends \PHPUnit_Framework_TestCase
         $newAddress = 'new@example.com';
 
         $message->getFrom()->willReturn([$oldAddress]);
+
         $message->setFrom(Argument::type('string'))->will(function ($args) {
             $this->getFrom()->willReturn([$args[0]]);
+        });
+
+        $message->setFrom(Argument::type('array'))->will(function ($args) {
+            $this->getFrom()->willReturn($args[0]);
         });
 
         $plugin = new ImpersonatePlugin($newAddress);
@@ -36,7 +41,9 @@ class ImpersonatePluginTest extends \PHPUnit_Framework_TestCase
         $event->getMessage()->willReturn($message->reveal());
 
         $plugin->beforeSendPerformed($event->reveal());
-
         self::assertSame([$newAddress], $message->reveal()->getFrom());
+
+        $plugin->sendPerformed($event->reveal());
+        self::assertSame([$oldAddress], $message->reveal()->getFrom());
     }
 }

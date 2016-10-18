@@ -26,6 +26,11 @@ class ImpersonatePlugin implements \Swift_Events_SendListener
     private $fromAddress;
 
     /**
+     * @var string[]
+     */
+    private $originalAddresses = [];
+
+    /**
      * @param string $address Address the message should be sent from
      */
     public function __construct($fromAddress)
@@ -39,6 +44,9 @@ class ImpersonatePlugin implements \Swift_Events_SendListener
     public function beforeSendPerformed(Swift_Events_SendEvent $event)
     {
         $message = $event->getMessage();
+
+        $this->originalAddresses = $message->getFrom();
+
         $message->setFrom($this->fromAddress);
     }
 
@@ -47,5 +55,7 @@ class ImpersonatePlugin implements \Swift_Events_SendListener
      */
     public function sendPerformed(Swift_Events_SendEvent $event)
     {
+        $message = $event->getMessage();
+        $message->setFrom($this->originalAddresses);
     }
 }
