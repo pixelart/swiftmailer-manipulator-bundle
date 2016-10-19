@@ -35,6 +35,16 @@ class ImpersonatePluginTest extends \PHPUnit_Framework_TestCase
             $this->getFrom()->willReturn($args[0]);
         });
 
+        $headers = $this->prophesize('\Swift_Mime_HeaderSet');
+        $message->getHeaders()->willReturn($headers->reveal());
+
+        $header = $this->prophesize('\Swift_Mime_Header');
+        $header->getFieldBodyModel()->willReturn([$oldAddress]);
+
+        $headers->addMailboxHeader('X-Swift-From', [$oldAddress])->will(function () use ($header) {
+            $this->get('X-Swift-From')->willReturn($header->reveal());
+        });
+
         $plugin = new ImpersonatePlugin($newAddress);
 
         $event = $this->prophesize('\Swift_Events_SendEvent');
