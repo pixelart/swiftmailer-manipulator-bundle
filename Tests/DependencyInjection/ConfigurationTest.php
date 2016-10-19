@@ -33,12 +33,14 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             [
                 'prepend_subject' => '[TESTSYSTEM!]',
                 'prepend_body' => 'swiftmailer/prepend_body.txt.twig',
+                'from_address' => 'fake@example.com',
             ],
         ], [
             'mailers' => [
                 'default' => [
                     'prepend_subject' => '[TESTSYSTEM!]',
                     'prepend_body' => 'swiftmailer/prepend_body.txt.twig',
+                    'from_address' => 'fake@example.com',
                 ],
             ],
         ]);
@@ -59,6 +61,21 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    public function testFromAddressOnlyIsProceeded()
+    {
+        $this->assertProcessedConfigurationEquals([
+            [
+                'from_address' => 'fake@example.com',
+            ],
+        ], [
+            'mailers' => [
+                'default' => [
+                    'from_address' => 'fake@example.com',
+                ],
+            ],
+        ]);
+    }
+
     public function testOneMailerIsProcessed()
     {
         $this->assertProcessedConfigurationEquals([
@@ -67,6 +84,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                     'main_mailer' => [
                         'prepend_subject' => '[TESTSYSTEM!]',
                         'prepend_body' => 'swiftmailer/prepend_body.txt.twig',
+                        'from_address' => 'fake@example.com',
                     ],
                 ],
             ],
@@ -75,6 +93,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                 'main_mailer' => [
                     'prepend_subject' => '[TESTSYSTEM!]',
                     'prepend_body' => 'swiftmailer/prepend_body.txt.twig',
+                    'from_address' => 'fake@example.com',
                 ],
             ],
         ]);
@@ -88,14 +107,17 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                     'first_mailer' => [
                         'prepend_subject' => '[TESTSYSTEM 1!]',
                         'prepend_body' => 'swiftmailer/prepend_body_1.txt.twig',
+                        'from_address' => 'fake_1@example.com',
                     ],
                     'secondary_mailer' => [
                         'prepend_subject' => '[TESTSYSTEM 2!]',
                         'prepend_body' => 'swiftmailer/prepend_body_2.txt.twig',
+                        'from_address' => 'fake_2@example.com',
                     ],
                     'third_mailer' => [
                         'prepend_subject' => '[TESTSYSTEM 3!]',
                         'prepend_body' => 'swiftmailer/prepend_body_3.txt.twig',
+                        'from_address' => 'fake_3@example.com',
                     ],
                 ],
             ],
@@ -104,14 +126,17 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                 'first_mailer' => [
                     'prepend_subject' => '[TESTSYSTEM 1!]',
                     'prepend_body' => 'swiftmailer/prepend_body_1.txt.twig',
+                    'from_address' => 'fake_1@example.com',
                 ],
                 'secondary_mailer' => [
                     'prepend_subject' => '[TESTSYSTEM 2!]',
                     'prepend_body' => 'swiftmailer/prepend_body_2.txt.twig',
+                    'from_address' => 'fake_2@example.com',
                 ],
                 'third_mailer' => [
                     'prepend_subject' => '[TESTSYSTEM 3!]',
                     'prepend_body' => 'swiftmailer/prepend_body_3.txt.twig',
+                    'from_address' => 'fake_3@example.com',
                 ],
             ],
         ]);

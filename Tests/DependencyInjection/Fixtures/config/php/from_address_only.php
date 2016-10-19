@@ -9,12 +9,9 @@
  * file that was distributed with this source code.
  */
 
+/**
+ * @author Dejan Angelov <angelovdejan92@gmail.com>
+ */
 $container->loadFromExtension('pixelart_swiftmailer_manipulator', [
-    'mailers' => [
-        'main_mailer' => [
-            'prepend_subject' => '[TESTSYSTEM!]',
-            'prepend_body' => 'swiftmailer/prepend_body.txt.twig',
-            'from_address' => 'fake@example.com',
-        ],
-    ],
+    'from_address' => 'fake@example.com',
 ]);

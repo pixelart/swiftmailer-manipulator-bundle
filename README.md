@@ -14,7 +14,8 @@ But maybe the crafted mail goes to a partner, retailer, user, whatever and now
 they are worried why they got them (for example notification systems).
 
 This bundle can help you! It provides a plugin into Swiftmailer, which allows
-you to modify every the subject or body of the mail before delivery.
+you to modify the subject or body or the from address of every message before
+delivery.
 
 Installation
 ------------
@@ -62,8 +63,8 @@ class AppKernel extends Kernel
 ### Step 3: Configure the Bundle
 
 Now, configure your wanted manipulations. You have the option to prepend
-the subject with an string or to prepend the body with the content of a
-template.
+the subject with an string, to prepend the body with the content of a
+template or change the message's from address.
 
 If you are using the default swiftmailer configuration, the config is:
 
@@ -73,6 +74,7 @@ If you are using the default swiftmailer configuration, the config is:
 pixelart_swiftmailer_manipulator:
     prepend_subject: '[TESTSYSTEM!]'
     prepend_body: 'swiftmailer/prepend_body.txt.twig'
+    from_address: 'impersonated@example.com'
 ```
 
 The bundle supports multiple swiftmailer mailers too. You only need to add

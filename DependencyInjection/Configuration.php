@@ -73,6 +73,10 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('prepend_body')
                     ->info('Path to template which is prepended onto the mail body')
                 ->end()
+                ->scalarNode('from_address')
+                    ->info('The address message should be sent from')
+                ->end()
+
             ->end()
         ;
 

@@ -19,5 +19,10 @@
                 abstract="true" public="false">
             <argument type="service" id="templating" />
         </service>
+
+        <service id="pixelart_swiftmailer_manipulator.plugin.impersonate.abstract"
+                 class="Pixelart\Bundle\SwiftmailerManipulatorBundle\Swift\Plugins\ImpersonatePlugin"
+                 abstract="true" public="false">
+        </service>
     </services>
 </container>

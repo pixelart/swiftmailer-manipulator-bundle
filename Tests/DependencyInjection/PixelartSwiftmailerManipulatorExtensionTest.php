@@ -31,11 +31,22 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
      * @dataProvider getConfigTypes
      * @expectedException \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      */
-    public function testEmptyConfig($type)
+    public function testManipulatorPluginFromEmptyConfig($type)
     {
         $container = $this->loadContainerFromFile('empty', $type);
 
         $container->get('pixelart_swiftmailer_manipulator.mailer.default.plugin.manipulator');
+    }
+
+    /**
+     * @dataProvider getConfigTypes
+     * @expectedException \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
+     */
+    public function testImpersonatePluginFromEmptyConfig($type)
+    {
+        $container = $this->loadContainerFromFile('empty', $type);
+
+        $container->get('pixelart_swiftmailer_manipulator.mailer.default.plugin.impersonate');
     }
 
     /**
@@ -51,6 +62,11 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
         );
 
         self::assertSame(
+            ['swiftmailer.default.plugin' => [[]]],
+            $container->getDefinition('pixelart_swiftmailer_manipulator.mailer.default.plugin.impersonate')->getTags()
+        );
+
+        self::assertSame(
             '[TESTSYSTEM!]',
             $container->getParameter('pixelart_swiftmailer_manipulator.mailer.default.manipulator.prepend_subject')
         );
@@ -58,6 +74,11 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
         self::assertSame(
             'swiftmailer/prepend_body.txt.twig',
             $container->getParameter('pixelart_swiftmailer_manipulator.mailer.default.manipulator.prepend_body')
+        );
+
+        self::assertSame(
+            'fake@example.com',
+            $container->getParameter('pixelart_swiftmailer_manipulator.mailer.default.impersonate.from_address')
         );
     }
 
@@ -84,6 +105,24 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
     /**
      * @dataProvider getConfigTypes
      */
+    public function testFromAddressOnly($type)
+    {
+        $container = $this->loadContainerFromFile('from_address_only', $type);
+
+        self::assertSame(
+            ['swiftmailer.default.plugin' => [[]]],
+            $container->getDefinition('pixelart_swiftmailer_manipulator.mailer.default.plugin.impersonate')->getTags()
+        );
+
+        self::assertSame(
+            'fake@example.com',
+            $container->getParameter('pixelart_swiftmailer_manipulator.mailer.default.impersonate.from_address')
+        );
+    }
+
+    /**
+     * @dataProvider getConfigTypes
+     */
     public function testOneMailer($type)
     {
         $container = $this->loadContainerFromFile('one_mailer', $type);
@@ -94,6 +133,11 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
         );
 
         self::assertSame(
+            ['swiftmailer.main_mailer.plugin' => [[]]],
+            $container->getDefinition('pixelart_swiftmailer_manipulator.mailer.main_mailer.plugin.impersonate')->getTags()
+        );
+
+        self::assertSame(
             '[TESTSYSTEM!]',
             $container->getParameter('pixelart_swiftmailer_manipulator.mailer.main_mailer.manipulator.prepend_subject')
         );
@@ -101,6 +145,11 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
         self::assertSame(
             'swiftmailer/prepend_body.txt.twig',
             $container->getParameter('pixelart_swiftmailer_manipulator.mailer.main_mailer.manipulator.prepend_body')
+        );
+
+        self::assertSame(
+            'fake@example.com',
+            $container->getParameter('pixelart_swiftmailer_manipulator.mailer.main_mailer.impersonate.from_address')
         );
     }
 
@@ -118,6 +167,11 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
         );
 
         self::assertSame(
+            ['swiftmailer.first_mailer.plugin' => [[]]],
+            $container->getDefinition('pixelart_swiftmailer_manipulator.mailer.first_mailer.plugin.impersonate')->getTags()
+        );
+
+        self::assertSame(
             '[TESTSYSTEM 1!]',
             $container->getParameter('pixelart_swiftmailer_manipulator.mailer.first_mailer.manipulator.prepend_subject')
         );
@@ -127,10 +181,20 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
             $container->getParameter('pixelart_swiftmailer_manipulator.mailer.first_mailer.manipulator.prepend_body')
         );
 
+        self::assertSame(
+            'fake_1@example.com',
+            $container->getParameter('pixelart_swiftmailer_manipulator.mailer.first_mailer.impersonate.from_address')
+        );
+
         // second mailer
         self::assertSame(
             ['swiftmailer.secondary_mailer.plugin' => [[]]],
             $container->getDefinition('pixelart_swiftmailer_manipulator.mailer.secondary_mailer.plugin.manipulator')->getTags()
+        );
+
+        self::assertSame(
+            ['swiftmailer.secondary_mailer.plugin' => [[]]],
+            $container->getDefinition('pixelart_swiftmailer_manipulator.mailer.secondary_mailer.plugin.impersonate')->getTags()
         );
 
         self::assertSame(
@@ -143,10 +207,20 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
             $container->getParameter('pixelart_swiftmailer_manipulator.mailer.secondary_mailer.manipulator.prepend_body')
         );
 
+        self::assertSame(
+            'fake_2@example.com',
+            $container->getParameter('pixelart_swiftmailer_manipulator.mailer.secondary_mailer.impersonate.from_address')
+        );
+
         // third mailer
         self::assertSame(
             ['swiftmailer.third_mailer.plugin' => [[]]],
             $container->getDefinition('pixelart_swiftmailer_manipulator.mailer.third_mailer.plugin.manipulator')->getTags()
+        );
+
+        self::assertSame(
+            ['swiftmailer.third_mailer.plugin' => [[]]],
+            $container->getDefinition('pixelart_swiftmailer_manipulator.mailer.third_mailer.plugin.impersonate')->getTags()
         );
 
         self::assertSame(
@@ -157,6 +231,11 @@ class PixelartSwiftmailerManipulatorExtensionTest extends \PHPUnit_Framework_Tes
         self::assertSame(
             'swiftmailer/prepend_body_3.txt.twig',
             $container->getParameter('pixelart_swiftmailer_manipulator.mailer.third_mailer.manipulator.prepend_body')
+        );
+
+        self::assertSame(
+            'fake_3@example.com',
+            $container->getParameter('pixelart_swiftmailer_manipulator.mailer.third_mailer.impersonate.from_address')
         );
     }
 
