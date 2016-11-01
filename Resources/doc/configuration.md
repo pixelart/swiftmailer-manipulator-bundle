@@ -7,7 +7,7 @@ template or change the message's from address.
 If you are using the default swiftmailer configuration, the config is:
 
 ```yaml
-# app/config_stage.yml
+# app/config/config.yml
 
 pixelart_swiftmailer_manipulator:
     prepend_subject: '[TESTSYSTEM!]'
@@ -21,7 +21,7 @@ mailers, `first_mailer`, `secondary_mailer` and `third_mailer`, but you don't
 want to prepend `third_mailer`:
 
 ```yaml
-# app/config_stage.yml
+# app/config/config.yml
 
 pixelart_swiftmailer_manipulator:
     mailers:
