@@ -60,40 +60,24 @@ class AppKernel extends Kernel
 }
 ```
 
-### Step 3: Configure the Bundle
+For more informations, see the [configuration page](Resources/doc/configuration.md).
 
-Now, configure your wanted manipulations. You have the option to prepend
-the subject with an string, to prepend the body with the content of a
-template or change the message's from address.
-
-If you are using the default swiftmailer configuration, the config is:
+Full configuration options
+--------------------------
 
 ```yaml
-# app/config_stage.yml
-
-pixelart_swiftmailer_manipulator:
-    prepend_subject: '[TESTSYSTEM!]'
-    prepend_body: 'swiftmailer/prepend_body.txt.twig'
-    from_address: 'impersonated@example.com'
-```
-
-The bundle supports multiple swiftmailer mailers too. You only need to add
-the mailers you want to manipulate. For example if you have three configured
-mailers, `first_mailer`, `secondary_mailer` and `third_mailer`, but you don't
-want to prepend `third_mailer`:
-
-```yaml
-# app/config_stage.yml
+# app/config/config.yml
 
 pixelart_swiftmailer_manipulator:
     mailers:
         first_mailer:
-            prepend_subject: '[TESTSYSTEM 1!]'
-            prepend_body: 'swiftmailer/prepend_body_1.txt.twig'
-        secondary_mailer:
-            prepend_subject: '[TESTSYSTEM 2!]'
-            prepend_body: 'swiftmailer/prepend_body_2.txt.twig'
+            prepend_subject: 'String prepend to subject'  # String which is prepended onto the subject
+            prepend_body: 'path/to/prepend_body.txt.twig' # Path to template which is prepended onto the mail body
+            from_address: 'altered-form@example.com'      # The address message should be sent from
+        second_mailer:
+            # ...
 ```
+
 
 Contributing
 ------------
